@@ -1,0 +1,66 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#Sigmoid Function :- The sigmoid activation function is a mathematical function that maps input values to a value between 0 and 1, making it useful for binary classification and logistic regression problems.
+#It is commonly used as an activation function in artificial neural networks, particularly in feedforward neural networks. 
+
+def sigmoid():
+    x=np.linspace(-5,5,100)
+    y=1/(1+np.exp(-x))
+    plt.plot(x,y)
+    plt.xlabel("X-Axis")
+    plt.ylabel("Y-Axis")
+    plt.title("Sigmoid Function")
+    plt.grid()
+sigmoid()
+
+Tanh :- The tanh activation function, also known as the hyperbolic tangent function, is a non-linear function that maps input values between -1 and 1. 
+#It's used in neural networks to compute the weighted sum of inputs and biases, and to convert linear inputs and models into non-linear output signals.
+
+def Tanh():
+    x=np.linspace(-5,5,100)
+#   y=2/(1+np.exp((-2*x)-1))
+    y=np.tanh(x)
+    plt.plot(x,y)
+    plt.xlabel("X-Axis")
+    plt.ylabel("Y-Axis")
+    plt.title("Tanh Function")
+    plt.grid()
+Tanh()
+
+#RELU:- The Rectified Linear Unit (ReLU) activation function, also known as the rectifier or ramp function, is a non-linear function that is commonly used in deep learning models.
+#The ReLU function outputs the same value if a model input is positive, but outputs zero if a model input is negative
+def Relu():
+    x=np.linspace(-5,5,100)
+    y=np.maximum(0,x)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-Axis")
+    plt.title("Relu")
+    plt.plot(x,y,label="Relu")
+    plt.legend()
+    plt.grid()
+Relu()
+
+#The identity activation function, also known as the linear activation function, is a function that maps input to the same output value.
+def identity():
+    x=np.linspace(-5,5,100)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-Axis")
+    plt.title("identity")
+    plt.plot(x,x,label="identity")
+    plt.legend()
+    plt.grid()
+identity()
+
+#The binary step activation function is a threshold-based activation function that activates a neuron if the input value is greater than a threshold value
+#he binary step activation function returns 0 as output if the node input value is less than 0, and 1 if it is greater than 0
+def binary():
+    x=np.linspace(-5,5,100)
+    y=np.where(x<0,0,1)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-Axis")
+    plt.title("identity")
+    plt.plot(x,y,label="binary")
+    plt.legend()
+    plt.grid()
+binary()
