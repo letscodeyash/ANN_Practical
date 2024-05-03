@@ -1,0 +1,41 @@
+import numpy as np
+
+class HopfieldNetwork:
+    #initiallize network with specified number of neurons 
+    #initiallize weight matrix with zero
+    def __init__(self, n_neurons):
+        self.n_neurons = n_neurons
+        self.weights = np.zeros((n_neurons, n_neurons))
+
+    #This method is used to train the network with a set of input patterns
+    #t iterates over each pattern in the input patterns and updates the weight matrix accordingly
+    def train(self, patterns):
+        for pattern in patterns:
+            self.weights += np.outer(pattern, pattern)
+        np.fill_diagonal(self.weights, 0)
+
+    #This method is used to predict the output pattern for a given input pattern. 
+    #It calculates the energy of the network for the given pattern and returns the sign of the dot product of the input pattern and the weight matrix plus the energy.
+    def predict(self, pattern):
+        energy = -0.5 * np.dot(np.dot(pattern, self.weights), pattern)
+        return np.sign(np.dot(pattern, self.weights) + energy)
+
+if __name__ == '__main__':
+    patterns = np.array([
+        [1, 1, -1, -1],
+        [-1, -1, 1, 1],
+        [1, -1, 1, -1],
+        [-1, 1, -1, 1]
+    ])
+
+    #The number of neurons in the network is determined by the number of elements in each pattern,
+    #which is obtained using patterns.shape[1].
+    n_neurons = patterns.shape[1]
+    network = HopfieldNetwork(n_neurons)
+    network.train(patterns)
+
+    for pattern in patterns:
+        prediction = network.predict(pattern)
+        print('Input pattern:', pattern)
+        print('Predicted pattern:', prediction)
+
