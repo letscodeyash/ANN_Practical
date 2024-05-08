@@ -27,6 +27,7 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.01),
 
 Z = np.sign(np.dot(np.c_[xx.ravel(), yy.ravel()], w) + b)
 Z = Z.reshape(xx.shape)
+#It reshapes Z to match the meshgrid dimensions
 
 #it creates a filled contour plot (contourf) based on the predicted labels, defining the decision regions.
 plt.contourf(xx, yy, Z, alpha=0.8)
